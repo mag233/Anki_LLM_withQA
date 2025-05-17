@@ -1,24 +1,37 @@
 # Import required libraries
-import os  # Operating system interface for file/directory operations
-from dotenv import load_dotenv  # Load environment variables from .env file
-import streamlit as st  # Web app framework for data apps
+import os
+from dotenv import load_dotenv
+import streamlit as st
+from PIL import Image
+from lang_utils import get_text  # ✅ 新增语言模块
 
-# Load environment variables (API keys, model settings, etc.)
+# Load environment variables
 load_dotenv()
 
-# Setup application directories
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get the directory containing this script
-PROJECTS_DIR = os.path.join(BASE_DIR, "projects")  # Define projects directory path
-os.makedirs(PROJECTS_DIR, exist_ok=True)  # Create projects directory if it doesn't exist
+# Setup directories
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECTS_DIR = os.path.join(BASE_DIR, "projects")
+os.makedirs(PROJECTS_DIR, exist_ok=True)
 
-# Streamlit page config and style
+# Streamlit page config
 st.set_page_config(
     page_title="LLM Paper Analysis Suite",
     page_icon="📚",
     layout="wide"
 )
+
+# Load and show logo
+logo_path = os.path.join(BASE_DIR, "logo.png")
+if os.path.exists(logo_path):
+    st.image(logo_path, width=200)
+
+# Language selector
+lang = st.sidebar.selectbox("🌐 Language / 语言", ["English", "中文"])
+text = get_text(lang)  # ✅ 获取语言字典
+
+# Style and Title
 st.markdown(
-    """
+    '''
     <style>
     .main {background-color: #f8f9fa;}
     .stTabs [data-baseweb="tab-list"] button {
@@ -41,24 +54,33 @@ st.markdown(
         box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
     </style>
-    """,
+    ''',
     unsafe_allow_html=True
 )
 
-st.markdown(
-    """
-    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;">
-        <span style="font-size:2.2rem;">📚 <b>LLM Paper Analysis Suite</b></span>
-        <span style="font-size:1.1rem;color:#666;">Your all-in-one tool for literature review, RAG, and Anki card generation</span>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+# 标题部分不变，仅条件显示
+if lang == "中文":
+    st.markdown(
+        '''
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;">
+            <span style="font-size:2.2rem;">📚 <b>LLM 论文分析套件</b></span>
+            <span style="font-size:1.1rem;color:#666;">集文献综述、问答与 Anki 卡片于一体的学习助手</span>
+        </div>
+        ''',
+        unsafe_allow_html=True
+    )
+else:
+    st.markdown(
+        '''
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;">
+            <span style="font-size:2.2rem;">📚 <b>LLM Paper Analysis Suite</b></span>
+            <span style="font-size:1.1rem;color:#666;">Your all-in-one tool for literature review, RAG, and Anki card generation</span>
+        </div>
+        ''',
+        unsafe_allow_html=True
+    )
 
-# 推荐做法：只在 app 启动时全局 import，所有 tab 共享
-from langchain_community.embeddings import OpenAIEmbeddings
-
-# 只在首次加载时 import 各 tab，避免每次切换重复 import
+# Lazy load tabs only on first load
 if "tab_funcs" not in st.session_state:
     from rag_tab import render_rag_tab
     from literature_tab import render_literature_tab
@@ -69,9 +91,14 @@ if "tab_funcs" not in st.session_state:
         render_anki_tab
     ]
 
-tab_labels = ["RAG", "Literature Review PLUS Database Q&A", "Anki Cards"]
-selected = st.tabs(tab_labels)
+# ✅ 替换 tab_labels 为统一语言控制
+tab_labels = [
+    text["tab_titles"]["RAG"],
+    text["tab_titles"]["Literature"],
+    text["tab_titles"]["Anki"]
+]
 
+selected = st.tabs(tab_labels)
 for i, tab in enumerate(selected):
     with tab:
-        st.session_state.tab_funcs[i](PROJECTS_DIR)
+        st.session_state.tab_funcs[i](PROJECTS_DIR, lang)  # ✅ 传递 lang 参数

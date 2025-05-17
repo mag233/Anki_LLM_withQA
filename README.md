@@ -11,15 +11,16 @@ Personal Knowledge Base & Learning Assistant
 
 ## Table of Contents
 
-1. [Project Purpose](#project-purpose)
-2. [Key Features](#key-features)
-3. [Project Structure](#project-structure)
-4. [Project Progress](#project-progress)
-5. [Wish List](#wish-list)
-6. [Installation](#installation)
-7. [Usage](#usage)
-8. [Contributing](#contributing)
-9. [License](#license)
+- [Table of Contents](#table-of-contents)
+- [Project Purpose](#project-purpose)
+- [Key Features](#key-features)
+- [Project Structure](#project-structure)
+- [Project Progress](#project-progress)
+- [Wish List](#wish-list)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
@@ -129,12 +130,9 @@ Run the Streamlit app:
 streamlit run app.py
 ```
 
-* Navigate to the *Ingestion* tab to load documents.
-* Use the *QA* tab for interactive queries.
-* Export flashcards from the *Anki* tab.
-* Check *Dashboard* for progress overview.
-
----
+* Navigate to the **RAG** tab to load documents.
+* Use the **Literature Review** tab for interactive queries.
+* Export flashcards from the **Anki Cards** tab.
 
 ## Contributing
 

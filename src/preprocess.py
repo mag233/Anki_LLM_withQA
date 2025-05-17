@@ -14,7 +14,7 @@ nltk.download('punkt', quiet=True)
 from langchain.schema import Document
 from langchain.document_loaders import (
     PyMuPDFLoader, TextLoader, UnstructuredWordDocumentLoader,
-    UnstructuredExcelLoader, UnstructuredHTMLLoader
+    UnstructuredExcelLoader, UnstructuredHTMLLoader, UnstructuredMarkdownLoader
 )
 from langchain.text_splitter import CharacterTextSplitter
 
@@ -22,12 +22,15 @@ from langchain.text_splitter import CharacterTextSplitter
 SUPPORTED_EXTENSIONS = {
     ".pdf": PyMuPDFLoader,
     ".txt": TextLoader,
+    ".text": TextLoader,  # 新增
     ".docx": UnstructuredWordDocumentLoader,
     ".doc": UnstructuredWordDocumentLoader,
     ".xls": UnstructuredExcelLoader,
     ".xlsx": UnstructuredExcelLoader,
     ".html": UnstructuredHTMLLoader,
     ".htm": UnstructuredHTMLLoader,
+    ".md": UnstructuredMarkdownLoader,
+    ".markdown": UnstructuredMarkdownLoader,
 }
 
 def process_documents(
@@ -121,7 +124,8 @@ def process_documents(
                 doc.page_content = t
         if ext in {".md", ".markdown"}:
             for doc in docs:
-                doc.page_content = doc.page_content.replace("\n\n", "\n")
+                # 去除多余空行，保留段落结构
+                doc.page_content = re.sub(r"\n{3,}", "\n\n", doc.page_content)
 
         # —— 分块逻辑 —— 
         chunks = []
@@ -139,11 +143,18 @@ def process_documents(
 
         elif chunking_method == "按段落":
             for doc in docs:
-                for i, para in enumerate(doc.page_content.split("\n\n")):
-                    chunks.append(Document(
-                        page_content=para,
-                        metadata={**doc.metadata, "chunk_id": f"{src.stem}_para{i}"}
-                    ))
+                # 针对 Excel 文件，按单行分割
+                if ext in {".xls", ".xlsx"}:
+                    paras = doc.page_content.split("\n")
+                else:
+                    paras = doc.page_content.split("\n\n")
+                for i, para in enumerate(paras):
+                    para = para.strip()
+                    if para:  # 跳过空段
+                        chunks.append(Document(
+                            page_content=para,
+                            metadata={**doc.metadata, "chunk_id": f"{src.stem}_para{i}"}
+                        ))
 
         else:  # 固定长度
             splitter = CharacterTextSplitter(
@@ -151,6 +162,11 @@ def process_documents(
                 chunk_overlap=chunk_overlap
             )
             chunks = splitter.split_documents(docs)
+
+        # 修正：为所有 chunk 自动补全 chunk_id，防止为空
+        for idx, chunk in enumerate(chunks):
+            if not chunk.metadata.get("chunk_id") or not str(chunk.metadata.get("chunk_id")).strip():
+                chunk.metadata["chunk_id"] = f"{src.stem}_chunk{idx}"
 
         logging.info(f"[Chunk] {file}: {len(chunks)} chunks generated.")
         print(f"[Chunk] [{idx}/{total_files}] {file}: {len(chunks)} chunks generated.")

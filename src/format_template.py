@@ -10,7 +10,7 @@ CARD_FORMAT_PROMPT = """
 
 请严格按照以下CSV表格格式输出（不需要表头）：
 
-- 若为"Q&A"类型，每行格式为：详细描述的问题,详细的答案，计算题要有过程和anki友好的公式模型,补充的相关背景信息
+- 若为"Q&A"类型，每行格式为：1 详细描述的问题,2 详细的答案，计算题要有过程和anki友好的公式模型, 3 补充的相关背景信息
 - 若为"Cloze"类型，每行格式为：填空句子（使用{{c1::...}}格式标记需要隐藏的内容）
 
 注意事项：
@@ -18,6 +18,7 @@ CARD_FORMAT_PROMPT = """
 - 问题和答案或填空句子之间用英文逗号分隔。
 - 根据提供的上下文内容，生成相关的学习卡片。不得使用上下文内容以外的内容。
 - 生成的卡片要具有规定的的难度和细节程度，适合不同水平的学习者。
+- 不需要标题行。
 """
 
 CARD_FORMAT_PROMPT_EN = """
@@ -38,6 +39,14 @@ Notes:
 - Use a comma to separate question and answer or cloze sentences.
 - Only use the provided context content; do not invent additional information.
 - The cards should be sufficiently detailed and challenging for learners at specified levels.
+- No title rows needed.
+
+Q&A Example:
+who am I?, I am a cat.,This explains my behavior.
+Cloze Example:
+I am a {{c1::cat}}.,This explains my behavior.
+
+Do not include any additional text or symbols such as ```csv.
 """
 
 SUMMARIZE_PROMPT = """
@@ -53,27 +62,11 @@ Improved query:
 """
 
 ANKI_PROMPT = """
-You are an expert educational assistant for Anki card creation. 
-Given the following user input, clarify the learning direction, focus, and main topic, and rewrite it as a clear, structured prompt suitable for generating high-quality Anki flashcards. 
-Emphasize what should be learned and the key points. 
-Output only the improved prompt for Anki card generation, nothing else.
+Given the following user input, analyze the learning direction, focus, and main topic. Rewrite it as a clear, structured prompt suitable for generating learning material. 
+Emphasize the core concepts, insights and key points that should be learned. 
+Output only the improved prompt for embedding retrieval, nothing else.
 
 User input:
 {user_query}
 
-Anki card prompt:
-"""
-
-"""
-from format_template import CARD_FORMAT_PROMPT
-
-filled_prompt = CARD_FORMAT_PROMPT.format(
-    num_cards=10,
-    card_type="Q&A",
-    difficulty="中等",
-    detail_level="详细",
-    query="线性代数的基本概念",
-    context="这里是相关内容"
-)
-print(filled_prompt)
 """

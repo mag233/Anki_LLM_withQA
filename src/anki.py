@@ -6,16 +6,22 @@ from typing import List
 from retrieve import initialize_chroma, search
 from embed import generate_embedding
 from summarize import call_llm_with_prompt
-from format_template import CARD_FORMAT_PROMPT, ANKI_PROMPT
+from format_template import CARD_FORMAT_PROMPT, CARD_FORMAT_PROMPT_EN, ANKI_PROMPT
 
-def standardize_query_with_llm_anki(user_query: str) -> str:
+
+def standardize_query_with_llm_anki(user_query: str, optimize: bool = True) -> str:
     """
     用LLM标准化Anki卡片的查询，聚焦学习方向和知识点，生成更易用的卡片生成提示。
+    optimize: 是否优化prompt
     """
     if not user_query or not isinstance(user_query, str):
         return ""
+    if not optimize:
+        print("[Anki] 未进行prompt优化，直接返回原始query")
+        return user_query
     prompt = ANKI_PROMPT.format(user_query=user_query)
     improved_query = call_llm_with_prompt(prompt, model="gpt-4o-mini", max_tokens=300)
+    print("[Anki] 优化后的prompt：", improved_query.strip())
     return improved_query.strip()
 
 def get_relevant_texts(
@@ -57,20 +63,33 @@ def build_prompt(
     difficulty: str,
     detail_level: str,
     num_cards: int,
-    texts: List[str]
+    texts: List[str],
+    lang: str = "en"
 ) -> str:
     """
     构建LLM prompt，包含用户参数和检索文本，格式模板引用外部文件。
+    lang: 语言，"中文" 或 "en"
     """
     context = "\n".join(texts)
-    prompt = CARD_FORMAT_PROMPT.format(
-        card_type=card_type,
-        difficulty=difficulty,
-        detail_level=detail_level,
-        num_cards=num_cards,
-        query=query,
-        context=context
-    )
+    if lang == "中文":
+        prompt = CARD_FORMAT_PROMPT.format(
+            card_type=card_type,
+            difficulty=difficulty,
+            detail_level=detail_level,
+            num_cards=num_cards,
+            query=query,
+            context=context
+        )
+    else:
+        prompt = CARD_FORMAT_PROMPT_EN.format(
+            card_type=card_type,
+            difficulty=difficulty,
+            detail_level=detail_level,
+            num_cards=num_cards,
+            query=query,
+            context=context
+        )
+    print("[Anki] 构建的prompt：", prompt[:500], "..." if len(prompt) > 500 else "")
     return prompt
 
 def generate_anki_cards_llm(
@@ -81,16 +100,23 @@ def generate_anki_cards_llm(
     detail_level: str = "moderate",
     num_cards: int = 5,
     top_k: int = 10,
-    relevance_threshold: float = 1.5
+    relevance_threshold: float = 1.5,
+    optimize_prompt: bool = True,
+    lang: str = "en"
 ) -> str:
     """
     主函数：检索文本，构建prompt，调用LLM生成卡片，直接返回LLM原始输出。
+    optimize_prompt: 是否优化用户query
+    lang: 语言，"中文" 或 "en"
     """
-    texts = get_relevant_texts(query, project_folder, top_k, relevance_threshold)
+    query_final = standardize_query_with_llm_anki(query, optimize=optimize_prompt)
+    texts = get_relevant_texts(query_final, project_folder, top_k, relevance_threshold)
     if not texts:
+        print("[Anki] No relevant texts found for the given query and threshold.")
         raise ValueError("No relevant texts found for the given query and threshold.")
-    prompt = build_prompt(query, card_type, difficulty, detail_level, num_cards, texts)
+    prompt = build_prompt(query_final, card_type, difficulty, detail_level, num_cards, texts, lang=lang)
     llm_response = call_llm_with_prompt(prompt)
+    print("[Anki] LLM返回内容前500字：", llm_response[:500], "..." if len(llm_response) > 500 else "")
     return llm_response
 
 def export_llm_cards_to_csv(

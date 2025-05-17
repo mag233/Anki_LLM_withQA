@@ -11,28 +11,30 @@ from literature import (
     find_chunk_by_id,
     build_chunk_text,
 )
+from lang_utils import get_text  # 新增
 
-# 缓存chunks读取
 @st.cache_data(show_spinner=False)
 def cached_load_all_chunks(chunks_folder):
     from literature import load_all_chunks
     return load_all_chunks(chunks_folder)
 
-def render_literature_tab(PROJECTS_DIR):
-    st.header("Literature Review & QA")
+def render_literature_tab(PROJECTS_DIR, lang):
+    text = get_text(lang)["literature_tab"]
+
+    st.header(text["header"])
 
     # Step 1: 项目选择
-    st.markdown("### Step 1: Select Project")
-    st.info("Select a project to perform literature review and QA. Please make sure you have already uploaded and processed your PDFs in the RAG tab.")
+    st.markdown(text["step1_title"])
+    st.info(text["step1_info"])
     projects = [d for d in os.listdir(PROJECTS_DIR) if os.path.isdir(os.path.join(PROJECTS_DIR, d))]
     selected_project = st.selectbox(
-        "Select Project for Literature Review:",
+        text["select_project"],
         options=projects,
         key="literature_project"
     )
 
     if not selected_project:
-        st.warning("Please select a project")
+        st.warning(text["no_project"])
         return
 
     # 各路径
@@ -40,91 +42,75 @@ def render_literature_tab(PROJECTS_DIR):
     chroma_db_folder = os.path.join(project_path, "vectorstore", "chroma_db")
     chunks_folder = os.path.join(project_path, "processed", "chunks")
 
-    # 检查数据库文件夹
     if not os.path.exists(chroma_db_folder):
-        st.warning("Please generate embeddings for this project first (see RAG tab).")
+        st.warning(text["no_db_warning"])
         return
 
     # Step 2: 输入检索问题
-    st.markdown("### Step 2: Enter Your Query")
-    st.info("Describe your research question or information need. The system will help you standardize and optimize your query for better retrieval.")
-    optimize_prompt = st.checkbox("进行检索意图优化（Prompt Optimization）", value=True)
+    st.markdown(text["step2_title"])
+    st.info(text["step2_info"])
+    optimize_prompt = st.checkbox(text["optimize_prompt"], value=True)
     if 'litrev_last_query' not in st.session_state:
         st.session_state['litrev_last_query'] = ""
     if 'litrev_std_query' not in st.session_state:
         st.session_state['litrev_std_query'] = ""
-    query = st.text_input("Enter Your Query:")
+    query = st.text_input(text["query_input"])
 
     std_query = ""
     if optimize_prompt:
-        # 只在query变化时调用LLM优化
         if query and st.session_state['litrev_last_query'] != query:
-            with st.spinner("正在优化检索意图（Prompt Optimization in progress）..."):
+            with st.spinner(text["optimizing"]):
                 std_query = standardize_query(query)
             st.session_state['litrev_last_query'] = query
             st.session_state['litrev_std_query'] = std_query
         elif query:
             std_query = st.session_state['litrev_std_query']
         if std_query:
-            st.info(f"优化后的检索意图（Optimized Prompt）: {std_query}")
+            st.info(text["optimized_prompt"].format(prompt=std_query))
     else:
         std_query = query
 
     # Step 3: 编辑摘要模板
-    st.markdown("### Step 3: Customize Summarization Template")
-    st.info("You can customize the output format for the summary. The template supports sections and academic writing style.")
+    st.markdown(text["step3_title"])
+    st.info(text["step3_info"])
 
     col1, col2 = st.columns(2)
-    default_template_structured = """Provide a summary with the following sections:
-1. Introduction
-2. Key Findings
-3. Challenges
-4. Future Directions
-5. Conclusion
-6. Key data or Examples
-7. References
-"""
-    default_template_direct = """Provide a direct, concise answer to the query above, using only the information from the context. 
-If the answer is not explicitly available, say "Not enough information in the provided context."
-"""
+    default_template_structured = text["default_structured"]
+    default_template_direct = text["default_direct"]
 
     with col1:
-        st.markdown("**Structured Literature Review**")
-        template_structured = st.text_area("Structured Template", default_template_structured, height=200, key="structured_template")
+        st.markdown(text["structured_review"])
+        template_structured = st.text_area(text["structured_template"], default_template_structured, height=200, key="structured_template")
     with col2:
-        st.markdown("**Direct Answer**")
-        template_direct = st.text_area("Direct Answer Template", default_template_direct, height=200, key="direct_template")
+        st.markdown(text["direct_answer"])
+        template_direct = st.text_area(text["direct_template"], default_template_direct, height=200, key="direct_template")
 
-    # 用户选择使用哪个模板
     template_option = st.radio(
-        "Choose summary template style:",
-        options=["Structured", "Direct Answer"],
+        text["choose_template"],
+        options=[text["structured"], text["direct"]],
         index=0,
         horizontal=True
     )
-    custom_template = template_structured if template_option == "Structured" else template_direct
+    custom_template = template_structured if template_option == text["structured"] else template_direct
 
     # Step 4: 检索参数设置与检索
-    st.markdown("### Step 4: Retrieval Settings & Run Retrieval")
-    st.info("Adjust the retrieval parameters. If you get no results, try increasing the maximum distance threshold.")
+    st.markdown(text["step4_title"])
+    st.info(text["step4_info"])
     relevance_threshold = st.slider(
-        "Set Minimum Similarity Score (Relevance Threshold):",
+        text["relevance_threshold"],
         min_value=0.0, max_value=1.1, value=0.85, step=0.01,
-        help="Higher values mean stricter match (more similar). If you get no results, try lowering this value."
+        help=text["relevance_help"]
     )
-    num_chunks = st.slider("Select Number of Chunks to Retrieve:", min_value=5, max_value=50, value=15)
+    num_chunks = st.slider(text["num_chunks"], min_value=5, max_value=50, value=15)
 
-    # 检索操作
-    if std_query and st.button("Run Retrieval"):
-        st.info("Retrieving relevant chunks...")
+    if std_query and st.button(text["run_retrieval"]):
+        st.info(text["retrieving"])
         print(f"[INFO] search params: query={std_query}, top_k={num_chunks}, db={chroma_db_folder}, relevance_threshold={relevance_threshold}")
         db = initialize_chroma(chroma_db_folder)
         results = search(std_query, num_chunks, db, relevance_threshold)
         print(f"[INFO] search returned {len(results)} results")
-        st.success(str(len(results)) + " Chunks Found")
-        # 只在按钮点击时读取chunks
+        st.success(text["chunks_found"].format(n=len(results)))
         all_chunks = cached_load_all_chunks(chunks_folder)
-        # 查找匹配
         chunk_texts = []
         for result in results:
             chunk_id = result["chunk_id"]
@@ -146,46 +132,35 @@ If the answer is not explicitly available, say "Not enough information in the pr
         st.session_state.chunks = chunk_texts
 
     # Step 5: 生成摘要
-    st.markdown("### Step 5: Summarize Retrieved Chunks")
-    st.info("Generate a structured summary based on the retrieved content and your template.")
+    st.markdown(text["step5_title"])
+    st.info(text["step5_info"])
     model_choice = st.radio(
-        "Select Model:",
-        options=[
-            "gpt-4o",
-            "gpt-4o-mini"
-        ]
+        text["select_model"],
+        options=text["model_options"]
     )
     col_temp, col_tokens = st.columns(2)
     with col_temp:
         temperature = st.slider(
-            "Temperature (Creativity):",
+            text["temperature"],
             min_value=0.0, max_value=2.0, value=0.7, step=0.1,
-            help="Higher values produce more creative output. Typical range: 0.2~1.0"
+            help=text["temp_help"]
         )
     with col_tokens:
         max_tokens = st.number_input(
-            "Max Tokens:",
+            text["max_tokens"],
             min_value=500, max_value=128000, value=3000, step=500,
-            help="Maximum number of tokens in the summary output."
+            help=text["max_tokens_help"]
         )
-    log_metrics = st.checkbox("Log Token Consumption and Processing Time")
+    log_metrics = st.checkbox(text["log_metrics"])
     api_key = os.getenv("OPENAI_API_KEY")
     base_url = os.getenv("OPENAI_API_BASE", "https://api.openai.com/v1")
-    if 'chunks' in st.session_state and st.button("Generate Summary"):
+    if 'chunks' in st.session_state and st.button(text["generate_summary"]):
         chunks = st.session_state.chunks
         if chunks:
-            st.info("Summarizing Retrieved Chunks...")
-            # 动态拼接prompt
+            st.info(text["summarizing"])
             dynamic_template = custom_template.format(context="{context}", query=std_query)
-            basic_prompt = """You are given the following excerpts from research papers:
-
-{context}
-
-And here is the query you want to summarize, use only the information in the context.
-Generate reference according formal academic writing style [Chicago style], include DOI whenever available.
-#####{query}#####
-"""
-            final_prompt = basic_prompt.format(context="{context}", query=std_query, delimiter="#####") + dynamic_template
+            basic_prompt = text["basic_prompt"].format(context="{context}", query=std_query, delimiter="#####")
+            final_prompt = basic_prompt + dynamic_template
             summary, processing_time, token_consumption = summarize_chunks(
                 chunks, final_prompt, model=model_choice, api_key=api_key,
                 max_tokens=max_tokens, base_url=base_url, log_metrics=log_metrics, temperature=temperature
@@ -193,10 +168,9 @@ Generate reference according formal academic writing style [Chicago style], incl
             if summary:
                 st.write(summary)
                 if log_metrics:
-                    st.write(f"Processing Time: {processing_time} seconds")
-                    st.write(f"Total Tokens: {token_consumption}")
+                    st.write(text["show_time"].format(time=processing_time))
+                    st.write(text["show_tokens"].format(tokens=token_consumption))
             else:
-                st.warning("Summary generation failed, please check your input and template.")
+                st.warning(text["summary_fail"])
         else:
-            st.warning("No chunks found for summarization. Please run retrieval first.")
-
+            st.warning(text["no_chunks"])
