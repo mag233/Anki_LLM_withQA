@@ -3,10 +3,12 @@ import os
 import time
 
 # Set custom base URL if needed
-base_url = "https://xiaoai.plus/v1"
+base_url = os.getenv("OPENAI_API_BASE", "https://api.xiniao.ai/v1")
 api_key =  os.getenv("OPENAI_API_KEY")
 
 #client = openai.OpenAI(api_key=openai.api_key, base_url=openai.base_url)
+
+from format_template import SUMMARIZE_PROMPT
 
 def standardize_query_with_llm(user_query: str) -> str:
     """
@@ -15,13 +17,7 @@ def standardize_query_with_llm(user_query: str) -> str:
     """
     if not user_query or not isinstance(user_query, str):
         return ""
-    prompt = (
-        "You are an academic assistant. "
-        "Given the following user input, rewrite it as a clear, structured, and specific question or query. "
-        "Keep the user's original intent and important details. "
-        "Output only the improved query, nothing else.\n\n"
-        f"User input:\n{user_query}\n\nImproved query:"
-    )
+    prompt = SUMMARIZE_PROMPT.format(user_query=user_query)
     improved_query = call_llm_with_prompt(prompt, model="gpt-4o-mini", max_tokens=300)
     print("==== Standardized Query by LLM ====")
     print(improved_query)

@@ -6,7 +6,7 @@ from typing import List
 from retrieve import initialize_chroma, search
 from embed import generate_embedding
 from summarize import call_llm_with_prompt
-from format_template import CARD_FORMAT_PROMPT
+from format_template import CARD_FORMAT_PROMPT, ANKI_PROMPT
 
 def standardize_query_with_llm_anki(user_query: str) -> str:
     """
@@ -14,13 +14,7 @@ def standardize_query_with_llm_anki(user_query: str) -> str:
     """
     if not user_query or not isinstance(user_query, str):
         return ""
-    prompt = (
-        "You are an expert educational assistant for Anki card creation. "
-        "Given the following user input, clarify the learning direction, focus, and main topic, and rewrite it as a clear, structured prompt suitable for generating high-quality Anki flashcards. "
-        "Emphasize what should be learned and the key points. "
-        "Output only the improved prompt for Anki card generation, nothing else.\n\n"
-        f"User input:\n{user_query}\n\nAnki card prompt:"
-    )
+    prompt = ANKI_PROMPT.format(user_query=user_query)
     improved_query = call_llm_with_prompt(prompt, model="gpt-4o-mini", max_tokens=300)
     return improved_query.strip()
 

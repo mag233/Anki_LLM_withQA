@@ -17,7 +17,7 @@ CARD_FORMAT_PROMPT = """
 - 不要输出除CSV内容以外的任何文字。
 - 问题和答案或填空句子之间用英文逗号分隔。
 - 根据提供的上下文内容，生成相关的学习卡片。不得使用上下文内容以外的内容。
-- 生成的卡片要具有一定的难度和细节程度，适合不同水平的学习者。
+- 生成的卡片要具有规定的的难度和细节程度，适合不同水平的学习者。
 """
 
 CARD_FORMAT_PROMPT_EN = """
@@ -37,9 +37,32 @@ Notes:
 - Do NOT output anything except the CSV content.
 - Use a comma to separate question and answer or cloze sentences.
 - Only use the provided context content; do not invent additional information.
-- The cards should be sufficiently detailed and challenging for learners at different levels.
+- The cards should be sufficiently detailed and challenging for learners at specified levels.
 """
 
+SUMMARIZE_PROMPT = """
+You are an academic assistant. 
+Given the following user input, rewrite it as a clear, structured, and specific question or query. 
+Keep the user's original intent and important details. 
+Output only the improved query, nothing else.
+
+User input:
+{user_query}
+
+Improved query:
+"""
+
+ANKI_PROMPT = """
+You are an expert educational assistant for Anki card creation. 
+Given the following user input, clarify the learning direction, focus, and main topic, and rewrite it as a clear, structured prompt suitable for generating high-quality Anki flashcards. 
+Emphasize what should be learned and the key points. 
+Output only the improved prompt for Anki card generation, nothing else.
+
+User input:
+{user_query}
+
+Anki card prompt:
+"""
 
 """
 from format_template import CARD_FORMAT_PROMPT
