@@ -1,27 +1,36 @@
-streamlit>=1.25.0
-numpy>=1.24.4
-faiss-cpu>=1.7.3
-openai>=1.0.0
-pdfplumber>=0.10.1
-PyPDF2>=3.0.0
-python-dotenv>=1.0.0
-transformers>=4.35.2
-torch>=2.1.1
+# Core dependencies
+streamlit>=1.31.1
+numpy>=1.26.3
+openai>=1.12.0
+python-dotenv>=1.0.1
+pandas>=2.2.0
+
+# Vector store & embeddings
+chromadb>=0.4.22
+faiss-cpu>=1.7.4
+
+# Document processing
+pdfplumber>=0.10.3
+PyPDF2>=3.0.1
+pymupdf>=1.23.21
 fitz>=0.0.1.dev2
-pymupdf>=1.23.7
-pandas>=1.5.0
+
+# ML & LLM tools
+transformers>=4.37.2
+torch>=2.2.0
+tiktoken>=0.6.0
+
+# LangChain ecosystem
+langchain>=0.1.6
+langchain-community>=0.0.16
+langchain-openai>=0.0.5
+unstructured>=0.12.3
+
+# Document format support
+python-docx>=1.1.0
 openpyxl>=3.1.2
 xlsxwriter>=3.1.9
-
-# 文档分块与加载
-langchain>=0.1.16
-langchain-community>=0.0.34
-langchain-openai>=0.1.6
-unstructured>=0.12.6
-
-# 兼容Word/Excel/HTML/Markdown等格式
-python-docx>=1.1.0
 beautifulsoup4>=4.12.3
-lxml>=5.2.1
+lxml>=5.0.1
 markdown>=3.5.2
 

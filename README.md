@@ -1,78 +1,52 @@
-<!-- Add logo at the top -->
+<!-- Logo -->
 <p align="center">
-  <img src="literature-app/assets/logo.png" alt="ScholarPilot: AI Literature Review & Knowledge Pipeline Logo" width="280"/>
+  <img src="assets/logo.png" alt="ScholarPilot: AI Literature Review & Knowledge Pipeline Logo" width="220"/>
 </p>
 
-**Project Title**
+# Personal Knowledge Base & Learning Assistant
 
-Personal Knowledge Base & Learning Assistant
-
----
-
-## Table of Contents
-
-- [Table of Contents](#table-of-contents)
-- [Project Purpose](#project-purpose)
-- [Key Features](#key-features)
-- [Project Structure](#project-structure)
-- [Project Progress](#project-progress)
-- [Wish List](#wish-list)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+[中文版说明请见 README.zh.md](README.zh.md)
 
 ---
 
-## Project Purpose
+## About This Project
 
-This application is designed as a **personal knowledge base** and **learning assistant**, helping self-driven learners to:
+<p align="center">
+  <img src="assets/intro.png" alt="Project Introduction" width="400" height="400"/>
+</p>
 
-* Ingest and organize various document types (PDFs, articles, notes).
-* Ask questions and retrieve accurate information from the knowledge base.
-* Generate Anki-style flashcards for efficient review and retention.
-* Track learning progress and milestones.
-
----
-
-## Key Features
-
-* **Document Ingestion:** Import PDFs and text documents via multiple loaders (e.g., PyMuPDF, pdfplumber).
-* **Flexible Chunking:** Support sentence-, paragraph-, page-, or fixed-length chunking for vectorization.
-* **Retrieval QA:** RAG-powered question-answer interface with citation support.
-* **Flashcard Generation:** Automatic creation of Q\&A and cloze Anki cards with detailed notes.
-* **Dashboard:** Interactive UI showing project stats, recent activities, and learning metrics.
-* **Customization:** User-defined prompts, templates, and chunking strategies.
+Hello! This is my very first programming project. Although I am not a computer science major, I am passionate about learning new technologies and wanted to challenge myself by building something practical and interesting. Through this project, I hope to demonstrate my ability to learn independently, apply various tools, and solve real-world problems. I am still learning, and any feedback or suggestions are very welcome!
 
 ---
 
-## Project Structure
 
-```
-rag-anki-kit/  # renamed to match repository
+## Tech Stack & What I Learned
 
-├── app.py               # Streamlit application entry point
-├── retrieve/           
-│   ├── __init__.py      # Retriever module
-│   ├── initialize_chroma.py
-│   └── search.py        # QA search logic
-├── loaders/            
-│   ├── __init__.py      # Document loaders package
-│   ├── pymupdf_loader.py
-│   └── pdfplumber_loader.py
-├── anki/               
-│   ├── __init__.py      # Flashcard generation package
-│   └── exporter.py      # Anki export utilities
-├── dashboard/          
-│   ├── __init__.py      # Dashboard UI components
-│   └── metrics.py       # Learning metrics calculations
-├── data/               
-│   ├── raw/             # Raw document storage
-│   └── processed/       # Chunked and vectorized data
-├── requirements.txt     # Python dependencies
-├── README.md            # Project overview and instructions
-└── LICENSE              # License information
-```
+This project is a hands-on journey for me to explore and integrate the following technologies:
+
+- **Python**: Main programming language for backend logic and data processing.
+- **Streamlit**: Rapidly building interactive web apps for data science and ML.
+- **OpenAI API**: Using large language models for text generation, summarization, and Q&A.
+- **ChromaDB**: Vector database for semantic search and retrieval-augmented generation (RAG).
+- **LangChain**: Framework for chaining LLMs and document loaders.
+- **PyMuPDF, Unstructured, etc.**: Document parsing and chunking.
+- **Anki Export**: Automated generation of flashcards for spaced repetition.
+- **Docker & Git**: Basic experience with containerization and version control.
+
+I learned a lot about API integration, prompt engineering, and how to connect different Python libraries to create a full-stack application. I am still improving my code style and best practices.
+
+---
+
+## Features
+
+- **Document Ingestion**: Upload and process PDFs, Word, Excel, Markdown, and HTML files.
+- **Flexible Chunking**: Split documents by sentence, paragraph, page, or fixed length for downstream tasks.
+- **Semantic Search (RAG)**: Retrieve relevant document chunks using vector embeddings and similarity search.
+- **Literature Review & Q&A**: Ask research questions and get summarized answers with citations.
+- **Anki Card Generation**: Automatically create Q&A and cloze flashcards from your knowledge base.
+- **Interactive Dashboard**: Visualize project status, chunk/embedding counts, and processing progress.
+- **Customizable Templates**: Edit summarization and card generation prompts to fit your needs.
+- **Multi-language UI**: Supports both English and Chinese interfaces.
 
 ---
 
@@ -90,62 +64,84 @@ rag-anki-kit/  # renamed to match repository
 
 ---
 
-## Wish List
+## Roadmap & Future Plans
 
-* **Mobile App Frontend:** Flutter or React Native integration for iOS/Android.
-* **Advanced Analytics:** Learning curve visualization and spaced repetition tracking.
-* **Multilingual Support:** Interface and flashcards in English, Chinese, and Japanese.
-* **Citation Management:** Export bibliographies in common formats (BibTeX, RIS).
-* **Cloud Sync:** Sync knowledge base and cards across devices via cloud storage.
-* **Plugin System:** Allow third-party extensions for new document types and workflows.
+- [ ] Improve UI/UX and add more visualizations to the dashboard.
+- [ ] Add support for more document types and languages.
+- [ ] Enhance citation and bibliography export features.
+- [ ] Mobile-friendly interface or companion app.
+- [ ] Cloud sync and multi-device support.
+- [ ] More advanced analytics for learning progress.
+- [ ] Refactor code for better modularity and maintainability.
 
 ---
 
-## Installation
+## Project Structure
 
-1. Clone the repository:
+```
+anki_llm_withqa/
+├── app.py               # Streamlit app entry point
+├── anki/                # Flashcard generation logic
+├── embed/               # Embedding and vector DB logic
+├── preprocess/          # Document loading and chunking
+├── retrieve/            # Semantic search and RAG
+├── dashboard/           # UI components and metrics
+├── data/                # Raw and processed files
+├── requirements.txt     # Python dependencies
+├── README.md            # Project overview (this file)
+└── LICENSE
+```
 
+---
+
+## How to Run
+
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/mag233/rag-anki-kit.git
-   cd knowledge-assistant
+   cd rag-anki-kit
    ```
-2. Install dependencies:
 
+2. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
-3. Set environment variables:
 
+3. **Set your OpenAI API key:**
    ```bash
    export OPENAI_API_KEY="your_api_key"
+   ```
+
+4. **Start the app:**
+   ```bash
+   streamlit run app.py
    ```
 
 ---
 
 ## Usage
 
-Run the Streamlit app:
+- Go to the **RAG** tab to upload and process your documents.
+- Use the **Literature Review** tab to ask questions and get summaries.
+- Generate and export flashcards in the **Anki Cards** tab.
 
-```bash
-streamlit run app.py
-```
-
-* Navigate to the **RAG** tab to load documents.
-* Use the **Literature Review** tab for interactive queries.
-* Export flashcards from the **Anki Cards** tab.
+---
 
 ## Contributing
 
-Contributions are welcome! Please:
+I am still learning and open to all suggestions! If you have ideas or want to help, feel free to:
 
-1. Fork the repository.
-2. Create a feature branch (`git checkout -b feature/xyz`).
-3. Commit your changes (`git commit -m "Add feature xyz"`).
-4. Push to the branch (`git push origin feature/xyz`).
-5. Open a Pull Request.
+1. Fork this repo.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Commit your changes.
+4. Open a Pull Request.
 
 ---
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+---
+
+Thank you for checking out my project! If you have any advice or want to connect, please reach out via GitHub.

@@ -1,0 +1,20 @@
+{
+  "1-s2.0-S1532046420302069-main.pdf": {
+    "hash": "e066c7a4ceb02b83bc79d8e642547792",
+    "n_chunks": 8,
+    "last_processed": "2025-05-17T18:35:57.657361",
+    "chunk_method": "按段落"
+  },
+  "anki_template_maggie.md": {
+    "hash": "9c442e503bd786c1fe516e1eaea52019",
+    "n_chunks": 62,
+    "last_processed": "2025-05-17T18:35:57.684160",
+    "chunk_method": "按段落"
+  },
+  "LitRev.xlsx": {
+    "hash": "c8c22dea70cbdbbc868c699afe368577",
+    "n_chunks": 1,
+    "last_processed": "2025-05-17T18:35:57.740290",
+    "chunk_method": "按段落"
+  }
+}

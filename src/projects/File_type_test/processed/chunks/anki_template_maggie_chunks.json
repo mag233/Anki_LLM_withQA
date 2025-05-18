@@ -1,0 +1,498 @@
+[
+  {
+    "chunk_id": "anki_template_maggie_para0",
+    "chunk_text": "📘 Anki 卡片模板说明文档（Maggie 专用）",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para0"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para1",
+    "chunk_text": "🧩 模板 1：问答卡（适合定义、概念、计算题）",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para1"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para2",
+    "chunk_text": "🧾 用途",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para2"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para3",
+    "chunk_text": "学术名词解释（中英文）",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para3"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para4",
+    "chunk_text": "数学公式推导步骤",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para4"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para5",
+    "chunk_text": "Python 函数用途解释",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para5"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para6",
+    "chunk_text": "公共卫生知识点对照",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para6"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para7",
+    "chunk_text": "✅ 字段命名建议：",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para7"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para8",
+    "chunk_text": "Question → 问题描述",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para8"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para9",
+    "chunk_text": "Answer → 答案内容（可含 Latex 公式或解释）",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para9"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para10",
+    "chunk_text": "Tag（可选）→ 例如：math-linear-concept",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para10"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para11",
+    "chunk_text": "✅ 卡片模板设置",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para11"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para12",
+    "chunk_text": "样式（CSS）：",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para12"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para13",
+    "chunk_text": "```css .card { font-family: \"Segoe UI\", \"Helvetica Neue\", sans-serif; font-size: 20px; background-color: #fefefe; color: #333; border-radius: 16px; padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); line-height: 1.7; max-width: 700px; margin: auto; }",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para13"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para14",
+    "chunk_text": "h2 { margin-top: 0; margin-bottom: 12px; font-size: 22px; font-weight: bold; color: #1a1a1a; }",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para14"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para15",
+    "chunk_text": "hr { border: none; border-top: 1px solid #ccc; margin: 16px 0; } ```",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para15"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para16",
+    "chunk_text": "正面模板（Front）：",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para16"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para17",
+    "chunk_text": "```html",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para17"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para18",
+    "chunk_text": "Question",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para18"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para19",
+    "chunk_text": "{{Question}}",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para19"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para20",
+    "chunk_text": "```",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para20"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para21",
+    "chunk_text": "背面模板（Back）：",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para21"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para22",
+    "chunk_text": "```html",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para22"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para23",
+    "chunk_text": "Question",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para23"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para24",
+    "chunk_text": "{{Question}}",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para24"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para25",
+    "chunk_text": "Answer",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para25"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para26",
+    "chunk_text": "{{Answer}}",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para26"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para27",
+    "chunk_text": "```",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para27"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para28",
+    "chunk_text": "🧩 模板 2：Cloze 填空卡（适合公式、术语、语言记忆）",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para28"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para29",
+    "chunk_text": "🧾 用途",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para29"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para30",
+    "chunk_text": "公式记忆（如 $\\sec^2 x = 1 + an^2 x$）",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para30"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para31",
+    "chunk_text": "重要术语（如 \"Knowledge Translation\"）",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para31"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para32",
+    "chunk_text": "专业长句中关键词隐藏训练",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para32"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para33",
+    "chunk_text": "✅ 字段命名建议：",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para33"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para34",
+    "chunk_text": "文字 → Cloze 填空正文",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para34"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para35",
+    "chunk_text": "背面额外（可选）→ 解释、提示等补充信息",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para35"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para36",
+    "chunk_text": "✅ 卡片模板设置",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para36"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para37",
+    "chunk_text": "样式（CSS）：",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para37"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para38",
+    "chunk_text": "```css .card { font-family: \"Segoe UI\", \"Helvetica Neue\", sans-serif; font-size: 20px; text-align: left; color: #2e2e2e; background-color: #fefefe; padding: 24px; border-radius: 14px; box-shadow: 0 0 12px rgba(0, 0, 0, 0.05); line-height: 1.75; max-width: 700px; margin: auto; }",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para38"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para39",
+    "chunk_text": ".cloze { font-weight: bold; color: #007acc; background-color: #e6f2fb; padding: 2px 4px; border-radius: 4px; }",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para39"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para40",
+    "chunk_text": ".nightMode .cloze { color: #4da8ff; background-color: #223344; }",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para40"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para41",
+    "chunk_text": "h2 { font-size: 22px; margin-top: 0; margin-bottom: 12px; color: #222; }",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para41"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para42",
+    "chunk_text": "hr { margin: 24px 0; border: none; border-top: 1px solid #ddd; }",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para42"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para43",
+    "chunk_text": ".note { font-size: 16px; color: #999; margin-top: 12px; } ```",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para43"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para44",
+    "chunk_text": "正面模板（Front）：",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para44"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para45",
+    "chunk_text": "```html",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para45"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para46",
+    "chunk_text": "Fill in the blank:",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para46"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para47",
+    "chunk_text": "{{cloze:文字}}",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para47"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para48",
+    "chunk_text": "```",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para48"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para49",
+    "chunk_text": "背面模板（Back）：",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para49"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para50",
+    "chunk_text": "```html",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para50"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para51",
+    "chunk_text": "Fill in the blank:",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para51"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para52",
+    "chunk_text": "{{cloze:文字}}",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para52"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para53",
+    "chunk_text": "{{#背面额外}}",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para53"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para54",
+    "chunk_text": "Explanation",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para54"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para55",
+    "chunk_text": "{{背面额外}}",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para55"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para56",
+    "chunk_text": "{{/背面额外}} ```",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para56"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para57",
+    "chunk_text": "💡 制作技巧",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para57"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para58",
+    "chunk_text": "用法 示例 Cloze 填空语法 {{c1::supervised learning}} LaTeX 数学公式 \\[ a^2 + b^2 = c^2 \\] 添加注释 <span class=\"note\">中文提示</span> 多个空格 {{c1::Supervised}}, {{c2::Unsupervised}} 音频插入 [sound:xxx.mp3] （用于语言学习）",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para58"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para59",
+    "chunk_text": "📦 文件保存建议",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para59"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para60",
+    "chunk_text": "将本说明文档保存为 .md 或 .docx 文件放入学习资料目录",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para60"
+    }
+  },
+  {
+    "chunk_id": "anki_template_maggie_para61",
+    "chunk_text": "将模板样式备份为 .apkg 文件（可让我帮你打包）",
+    "metadata": {
+      "source": "C:\\Users\\ASUS\\OneDrive\\Documents\\GitHub\\Anki_LLM_withQA\\src\\projects\\File_type_test\\raw_pdfs\\anki_template_maggie.md",
+      "chunk_id": "anki_template_maggie_para61"
+    }
+  }
+]
