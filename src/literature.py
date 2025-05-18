@@ -2,8 +2,11 @@ import os
 import json
 from summarize import standardize_query_with_llm
 
-def standardize_query(query):
-    return standardize_query_with_llm(query)
+def standardize_query(query, model=None):
+    """Accepts optional model parameter to use specific model for query optimization"""
+    if model:
+        print(f"[Literature] Using {model} for query standardization")
+    return standardize_query_with_llm(query, model=model)
 
 def load_all_chunks(chunks_folder):
     """合并所有chunk文件，返回所有chunk的列表"""

@@ -107,7 +107,7 @@ def get_text(lang):
             "step5_title": "### 步骤5：生成摘要" if lang == "中文" else "### Step 5: Summarize Retrieved Chunks",
             "step5_info": "基于检索内容和你的模板生成结构化摘要。" if lang == "中文" else "Generate a structured summary based on the retrieved content and your template.",
             "select_model": "选择模型：" if lang == "中文" else "Select Model:",
-            "model_options": ["gpt-4o", "gpt-4o-mini"],
+            "model_options": ["gpt-4o", "gpt-4o-mini", "qwen-max", "qwen-plus", "qwen-turbo"],
             "temperature": "Temperature (创造性)：" if lang == "中文" else "Temperature (Creativity):",
             "temp_help": "值越高输出越有创造力，常用范围0.2~1.0" if lang == "中文" else "Higher values produce more creative output. Typical range: 0.2~1.0",
             "max_tokens": "最大输出 tokens：" if lang == "中文" else "Max Tokens:",

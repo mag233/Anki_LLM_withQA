@@ -46,29 +46,62 @@ def render_literature_tab(PROJECTS_DIR, lang):
         st.warning(text["no_db_warning"])
         return
 
+    # 模型选择
+    st.markdown("### " + text["select_model"])
+    col_model, col_temp = st.columns([2,1])
+    with col_temp:
+        temperature = st.slider(
+            text["temperature"],
+            min_value=0.0, max_value=2.0, value=0.7, step=0.1,
+            help=text["temp_help"]
+        )
+    with col_model:
+        previous_model = st.session_state.get('selected_model', None)
+        model_choice = st.radio(
+            text["select_model"],
+            options=text["model_options"],
+            horizontal=True
+        )
+        # 当模型改变时，清除之前的优化结果
+        if previous_model != model_choice:
+            st.session_state['litrev_last_query'] = ""
+            st.session_state['litrev_std_query'] = ""
+            st.session_state['selected_model'] = model_choice
+            print(f"[Model] Model changed from {previous_model} to {model_choice}, clearing cached queries")
+        
+        print(f"[Model] Using model: {model_choice}, temperature: {temperature}")
+
     # Step 2: 输入检索问题
     st.markdown(text["step2_title"])
     st.info(text["step2_info"])
     optimize_prompt = st.checkbox(text["optimize_prompt"], value=True)
-    if 'litrev_last_query' not in st.session_state:
-        st.session_state['litrev_last_query'] = ""
-    if 'litrev_std_query' not in st.session_state:
-        st.session_state['litrev_std_query'] = ""
-    query = st.text_input(text["query_input"])
+
+    # 输入框和优化按钮布局
+    query_col, btn_col = st.columns([9, 1])
+    with query_col:
+        query = st.text_input(text["query_input"])
+    with btn_col:
+        optimize_btn = st.button("🔄 " + (text["optimized_prompt"].split(":")[0] if optimize_prompt else text["run_retrieval"].split(":")[0]))
 
     std_query = ""
     if optimize_prompt:
-        if query and st.session_state['litrev_last_query'] != query:
+        if query and optimize_btn:
             with st.spinner(text["optimizing"]):
-                std_query = standardize_query(query)
-            st.session_state['litrev_last_query'] = query
-            st.session_state['litrev_std_query'] = std_query
+                print(f"[Prompt] Optimizing query using {model_choice} model...")
+                print(f"[Prompt] Original query: {query}")
+                std_query = standardize_query(query, model=model_choice)
+                print(f"[Prompt] Optimized query: {std_query}")
+                st.session_state['litrev_last_query'] = query
+                st.session_state['litrev_std_query'] = std_query
+                st.session_state['selected_model'] = model_choice
         elif query:
-            std_query = st.session_state['litrev_std_query']
-        if std_query:
-            st.info(text["optimized_prompt"].format(prompt=std_query))
+            std_query = st.session_state.get('litrev_std_query', "")
     else:
         std_query = query
+        
+    # 显示优化结果
+    if std_query and optimize_prompt:
+        st.info(("🤖 " + text["optimized_prompt"].split(":")[0] + f" ({model_choice}):\n\n{std_query}") if lang == "English" else f"🤖 {text['optimized_prompt'].split(':')[0]}（{model_choice}）:\n\n{std_query}")
 
     # Step 3: 编辑摘要模板
     st.markdown(text["step3_title"])
@@ -120,8 +153,8 @@ def render_literature_tab(PROJECTS_DIR, lang):
             else:
                 chunk_texts.append({
                     "chunk_id": chunk_id,
-                    "chunk_text": "[Not found]",
-                    "source": "unknown",
+                    "chunk_text": "[Not found]" if lang == "English" else "未找到",
+                    "source": "unknown" if lang == "English" else "未知",
                     "doi": "",
                     "title": "",
                     "author": "",
@@ -134,23 +167,13 @@ def render_literature_tab(PROJECTS_DIR, lang):
     # Step 5: 生成摘要
     st.markdown(text["step5_title"])
     st.info(text["step5_info"])
-    model_choice = st.radio(
-        text["select_model"],
-        options=text["model_options"]
+    
+    # tokens setting only
+    max_tokens = st.number_input(
+        text["max_tokens"],
+        min_value=500, max_value=128000, value=3000, step=500,
+        help=text["max_tokens_help"]
     )
-    col_temp, col_tokens = st.columns(2)
-    with col_temp:
-        temperature = st.slider(
-            text["temperature"],
-            min_value=0.0, max_value=2.0, value=0.7, step=0.1,
-            help=text["temp_help"]
-        )
-    with col_tokens:
-        max_tokens = st.number_input(
-            text["max_tokens"],
-            min_value=500, max_value=128000, value=3000, step=500,
-            help=text["max_tokens_help"]
-        )
     log_metrics = st.checkbox(text["log_metrics"])
     api_key = os.getenv("OPENAI_API_KEY")
     base_url = os.getenv("OPENAI_API_BASE", "https://api.openai.com/v1")

@@ -40,7 +40,7 @@ def search(query: str,
     )
     metas_list     = resp["metadatas"][0]
     distances_list = resp["distances"][0]
-    print(f"[DEBUG] Distance stats: min={min(distances_list):.4f}, max={max(distances_list):.4f}, avg={sum(distances_list)/len(distances_list):.4f}")
+    
     results = []
     for i, (meta, dist) in enumerate(zip(metas_list, distances_list)):
         cid = meta.get("chunk_id", None)
@@ -54,6 +54,15 @@ def search(query: str,
             "source":   source,
             "distance": dist
         })
+    
+    # 只在有结果时打印统计信息
+    if distances_list:
+        print(f"[DEBUG] Distance stats: min={min(distances_list):.4f}, "
+              f"max={max(distances_list):.4f}, "
+              f"avg={sum(distances_list)/len(distances_list):.4f}")
+    else:
+        print("[DEBUG] No results found within threshold")
+
     print(f"[DEBUG] search() returning {len(results)} results")
     return results
 
