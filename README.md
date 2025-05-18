@@ -15,7 +15,7 @@
   <img src="assets/intro.png" alt="Project Introduction" width="400" height="400"/>
 </p>
 
-Hello! This is my very first programming project. Although I am not a computer science major, I am passionate about learning new technologies and wanted to challenge myself by building something practical and interesting. Through this project, I hope to demonstrate my ability to learn independently, apply various tools, and solve real-world problems. I am still learning, and any feedback or suggestions are very welcome!
+Hello! This is my very first programming project. Although I am not a computer science major, I am passionate about learning new technologies and wanted to challenge myself by building something practical and interesting. I am still learning, and any feedback or suggestions are very welcome!
 
 ---
 
