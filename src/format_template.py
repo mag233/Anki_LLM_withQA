@@ -51,8 +51,8 @@ Do not include any additional text or symbols such as ```csv.
 
 SUMMARIZE_PROMPT = """
 You are an academic assistant. 
-Given the following user input, rewrite it as a clear, structured, and specific question or query. 
-Keep the user's original intent and important details. 
+Given the following user input, rewrite it as a clear, structured, and specific question or query for calculate the distance in the database. 
+Keep the user's original intent and important details. Add keywords and phrases to enhance clarity and focus for retrieval.
 Output only the improved query, nothing else.
 
 User input:
